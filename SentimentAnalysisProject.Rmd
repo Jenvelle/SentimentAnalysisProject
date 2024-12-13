@@ -16,9 +16,8 @@ library(syuzhet)
 library(ggplot2)
 library(tidyverse)
 library(stringr)
-library(tm)
-library(scales)
 library(readr)
+library(lubridate)
 
 iniTweets <- read.csv("tweetsDF.csv")
 
@@ -77,9 +76,20 @@ ggplot(all_days, aes(x = hour, y = tweet_count, group = day, color = as.factor(d
 
 ```
 
+The graph shows Hourly Tweet Counts from Day 1 to Day 3, with tweet data represented across different times of the day. 
 
+- In Day 1, The red line remains consistently flat at the bottom, indicating almost no tweeting activity throughout the 24 hours.
 
-```
+- In Day 2, The green line shows no activity until around 14:00 (2 PM), after which there is a sharp increase in tweet counts. The number of tweets spikes significantly between 14:00 and 18:00.  Afterward, the tweet count drops but remains moderately high until the end of the day.
 
+- In Day 3, The blue line shows consistent tweeting activity throughout the day, starting with a high volume (around 2000-3000 tweets) during the early morning hours (0:00 - 5:00). The tweet count gradually decreases throughout the morning and early afternoon. There is a slight dip and, followed by a minor uptick before declining again in the late afternoon.
+
+#INSIGHTS
+
+- Day 1 had no significant activity, which could suggest either downtime, a lack of engagement, or a deliberate pause.
+
+- Day 2 saw a dramatic surge in tweets during the afternoon, that triggered widespread engagement during that period.
+
+- Day 3 maintained consistent tweeting, especially during early morning hours, indicating a sustained level of interest or activity before gradually tapering off.
 
 
