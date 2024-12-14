@@ -24,8 +24,10 @@ iniTweets <- read.csv("tweetsDF.csv")
 tweetsDf <- iniTweets
 
 ```
+---
 
 
+--- Cleaning Data ---
 
 ```{r}
 cleanTweets <- tweetsDf %>%
@@ -41,7 +43,11 @@ cleanTweets <- tweetsDf %>%
 write.csv(cleanTweets, "cleaned_tweets.csv", row.names = FALSE)
 
 ```
+---
 
+
+
+--- Trend Analysis ---
 ```{r}
 cleanTweets <- cleanTweets %>%
   mutate(date = ymd_hms(created)) %>%  
@@ -92,4 +98,40 @@ The graph shows Hourly Tweet Counts from Day 1 to Day 3, with tweet data represe
 
 - Day 3 maintained consistent tweeting, especially during early morning hours, indicating a sustained level of interest or activity before gradually tapering off.
 
+---
 
+
+--- Sentiment Analysis ---
+
+```{r}
+cleaned_tweets <- read.csv("cleaned_tweets.csv")
+
+cleaned_tweets <- cleaned_tweets %>%
+  mutate(sentiment_category = case_when(
+    sentiment > 0 ~ "Positive",
+    sentiment < 0 ~ "Negative",
+    TRUE ~ "Neutral"
+  ))
+
+sentiment_by_device <- cleaned_tweets %>%
+  group_by(tweetSource, sentiment_category) %>%
+  summarise(count = n(), .groups = "drop")
+
+
+sentiment_plot <- ggplot(sentiment_by_device, aes(x = sentiment_category, y = count, fill = sentiment_category)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  facet_wrap(~ tweetSource) +
+  labs(
+    title = "Sentiment Analysis by Device",
+    x = "Sentiment Category",
+    y = "Count of Tweets"
+  ) +
+  theme_minimal() +
+  scale_fill_manual(values = c("Positive" = "green", "Neutral" = "blue", "Negative" = "red"))
+
+
+print(sentiment_plot)
+
+
+
+```
