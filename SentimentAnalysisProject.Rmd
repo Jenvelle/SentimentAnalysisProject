@@ -132,6 +132,20 @@ sentiment_plot <- ggplot(sentiment_by_device, aes(x = sentiment_category, y = co
 
 print(sentiment_plot)
 
-
-
 ```
+
+The graph displays the sentiment analysis of tweets categorized by the device source. Tweets are grouped into three sentiment categories—Positive, Neutral, and Negative. Their counts are compared across devices.
+
+- Android: The majority of tweets are Neutral (blue), followed by Negative (red) and then Positive (green), with significantly higher tweet counts compared to other devices.
+
+- Iphone: Negative tweets dominate slightly over Neutral tweets, with Positive tweets being the least frequent. The overall volume is lower than Android but still substantial.
+
+- Others: Neutral tweets are the most frequent, followed by Negative and Positive. The total tweet count is considerably lower than Android and iPhone.
+
+- Ipad: Negative tweets dominate, with almost no Neutral or Positive tweets.
+
+- dlvr.it and IFTTT: These sources have very low tweet volumes, and most tweets are Neutral or Negative, with Positive tweets nearly absent.
+
+#INSIGHTS
+
+- Android has the highest volume of tweets, suggesting it might be the most popular device for tweeting. iPhone users have a relatively higher proportion of Negative tweets, indicating potential dissatisfaction or criticism from this group.Devices like iPad, dlvr.it, and IFTTT have minimal tweet activity, which might indicate limited user engagement or niche usage. Neutral tweets are consistently higher across most devices, implying a tendency for users to share non-opinionated or factual content.
